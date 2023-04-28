@@ -1,2 +1,0 @@
-# ChatMeow
-Public Chatting Application 
