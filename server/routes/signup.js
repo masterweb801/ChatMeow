@@ -3,9 +3,10 @@ const cors = require('cors');
 const User = require('../models/Users');
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
-var jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
+require('dotenv').config()
 
-const JWT_SECRET = 'Harryisagoodb$oy';
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const router = express.Router();
 router.use(cors());
