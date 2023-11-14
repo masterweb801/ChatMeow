@@ -1,0 +1,74 @@
+.status-update {
+    width: 100%;
+    height: auto;
+    background: #fff;
+    padding: 10px 15px;
+    border-radius: 15px;
+    border: 1px solid gray;
+    margin: 0;
+}
+
+.user-profile-pic * {
+    vertical-align: middle;
+}
+
+.user-profile-pic label {
+    font-size: 17px;
+    font-family: monospace;
+    font-weight: 900;
+}
+
+.user-profile-pic img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid rgb(8, 107, 255);
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.status-input {
+    padding: 15px;
+}
+
+.status-input textarea {
+    resize: none;
+    width: 100%;
+    height: auto;
+    min-height: 100px;
+    padding: 15px;
+    font-size: 15px;
+    font-family: 'Segoe UI';
+    font-weight: 500;
+    word-wrap: break-word;
+    border: 2px solid gray;
+    border-radius: 10px;
+}
+
+.btn-group {
+    width: 100%;
+    text-align: center;
+}
+
+.btn-group button {
+    width: 33.33%;
+    padding: 5px 0;
+    background: none;
+    border: 0;
+    border-right: 2px solid gray;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-group button:hover {
+    border-radius: 7px;
+    background-color: rgb(218, 205, 205);
+}
+
+.btn-group button:last-child {
+    border: 0;
+}
+
+.btn-group #file-input {
+    display: none;
+}

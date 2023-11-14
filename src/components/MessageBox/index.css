@@ -1,0 +1,137 @@
+.chat-area {
+    margin-top: -40px;
+    height: 80vh;
+}
+
+.chat-header {
+    width: 100%;
+    display: flex;
+    margin-bottom: 12px;
+    border-bottom: 1px solid gray;
+    padding: 10px;
+    align-items: center;
+}
+
+.usr-card-label {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.chat-header .usr-card-label label:first-child {
+    font-size: 15px;
+    font-family: monospace;
+    font-weight: 900;
+}
+
+.chat-header .usr-card-label label:last-child {
+    font-size: 15px;
+    font-family: monospace;
+    font-weight: 900;
+    color: gray;
+    margin-left: 5px;
+}
+
+.chat-header img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid rgb(146, 146, 146);
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.chat-box {
+    width: 100%;
+    min-height: 60vh;
+    overflow-y: auto;
+    padding: 10px 30px 20px 30px;
+    background: #f7f7f7;
+    box-shadow: inset 0 32px 32px -32px rgb(0 0 0 / 5%),
+        inset 0 -32px 32px -32px rgb(0 0 0 / 5%);
+}
+
+.chat-box .chat {
+    margin: 15px 0;
+}
+
+.chat-box .chat p {
+    word-wrap: break-word;
+    padding: 8px 16px;
+    box-shadow: 0 0 32px rgb(0 0 0 / 8%),
+        0rem 16px 16px -16px rgb(0 0 0 / 10%);
+}
+
+.chat-box .outgoing {
+    display: flex;
+    float: right;
+}
+
+.chat-box .outgoing .details {
+    margin-left: auto;
+    max-width: 60%;
+}
+
+.outgoing .details p {
+    background: #333;
+    color: #fff;
+    border-radius: 18px 18px 0 18px;
+}
+
+.chat-box .incoming {
+    display: flex;
+    align-items: flex-end;
+}
+
+.chat-box .incoming img {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    border: 1px solid #333;
+}
+
+.chat-box .incoming .details {
+    margin-right: auto;
+    margin-left: 10px;
+    max-width: 60%;
+}
+
+.incoming .details p {
+    background: #fff;
+    color: #333;
+    border-radius: 18px 18px 18px 0;
+}
+
+.typing-area {
+    padding: 18px 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.typing-area input {
+    height: 45px;
+    width: calc(100% - 58px);
+    font-size: 16px;
+    padding: 0 13px;
+    border: 1px solid #e6e6e6;
+    outline: none;
+    border-radius: 5px 0 0 5px;
+}
+
+.typing-area .msg-send {
+    color: rgb(0, 162, 255);
+    width: 55px;
+    border: none;
+    outline: none;
+    background-color: #333;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0.7;
+    border-radius: 0 5px 5px 0;
+    transition: all 0.3s ease;
+}
+
+.typing-area .msg-send:hover {
+    background-color: rgb(216, 216, 216);
+    color: rgb(9, 92, 139);
+}

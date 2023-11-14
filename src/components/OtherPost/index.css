@@ -1,0 +1,131 @@
+.other-profile-pic {
+    display: flex;
+    margin: 12px 0;
+    align-items: center;
+}
+
+.other-top-label {
+    display: flex;
+    flex-direction: column;
+}
+
+.other-profile-pic .other-top-label label:first-child {
+    font-size: 15px;
+    font-family: monospace;
+    font-weight: 900;
+}
+
+.other-profile-pic .other-top-label label:last-child {
+    font-size: 15px;
+    font-family: monospace;
+    font-weight: 900;
+    color: gray;
+}
+
+.other-profile-pic img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid rgb(146, 146, 146);
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.post .media {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.media img {
+    width: 100%;
+}
+
+.post-text {
+    margin: 7px;
+    margin-left: 20px;
+}
+
+.other-btn-group {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.other-btn-group button {
+    padding: 5px 0;
+    background: none;
+    border: 0;
+    margin-right: 7px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 50px;
+    font-size: 20px;
+}
+
+.other-btn-group button:hover {
+    border-radius: 7px;
+    background-color: rgb(218, 205, 205);
+}
+
+.comment-box {
+    background-color: #dfdbdb;
+    list-style: none;
+    margin-top: 5px;
+    padding: 5px 0;
+    border-radius: 15px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    border-top: 1px solid gray;
+}
+
+.comment-box .other-comment {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+    margin-left: 25px;
+}
+
+.other-comment p {
+    margin-left: 20px;
+}
+
+.user-comment {
+    margin-left: 10px;
+}
+
+.cmn-box {
+    width: 98%;
+    height: auto;
+}
+
+.cmn-box * {
+    vertical-align: middle;
+}
+
+.cmn-box textarea {
+    resize: none;
+    margin-top: 10px;
+    width: 90%;
+    height: auto;
+    min-height: 50px;
+    padding: 15px;
+    font-family: 'Segoe UI';
+    font-size: 15px;
+    font-weight: 500;
+    word-wrap: break-word;
+    border: 2px solid gray;
+    border-radius: 10px;
+}
+
+.cmn-box button {
+    height: 60px;
+    width: 10%;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: rgb(0, 119, 255)
+}
+
+.cmn-box button:hover {
+    color: rgb(2, 82, 173)
+}

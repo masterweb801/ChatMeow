@@ -1,0 +1,51 @@
+.container {
+    width: 100%;
+    display: flex;
+    margin: 0;
+    margin-bottom: 50px;
+}
+
+.container .chcon {
+    flex: 1;
+}
+
+.post-container {
+    width: 35%;
+    overflow: hidden;
+}
+
+.post-container .post,
+.post-container .status-update {
+    margin-top: 5px;
+    width: 100%;
+    height: auto;
+    background: #f0efef;
+    padding: 10px 15px;
+    border-radius: 15px;
+    border: 1px solid gray;
+}
+
+@media only screen and (max-width: 872px) {
+    .container {
+        justify-content: center;
+    }
+
+    .container .chcon {
+        display: none;
+    }
+
+    .container .post-container {
+        width: 50%;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+    .container .chcon {
+        display: none;
+    }
+
+    .container .post-container {
+        width: 100%;
+    }
+}

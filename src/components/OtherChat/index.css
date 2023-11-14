@@ -1,0 +1,47 @@
+.usr-card {
+    width: 100%;
+    border-top: none;
+    border-left: none;
+    display: flex;
+    margin: 12px 0;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-right: 3px solid gray;
+    border-bottom: 1px solid gray;
+}
+
+.usr-card:hover {
+    background-color: rgb(233, 231, 231);
+}
+
+.usr-card-label {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.usr-card .usr-card-label label:first-child {
+    font-size: 15px;
+    font-family: monospace;
+    font-weight: 900;
+}
+
+.usr-card .usr-card-label label:last-child {
+    font-size: 15px;
+    font-family: monospace;
+    font-weight: 900;
+    color: gray;
+    margin-left: 5px;
+}
+
+.usr-card img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid rgb(146, 146, 146);
+    margin-right: 10px;
+    object-fit: cover;
+}
