@@ -18,20 +18,8 @@ const UserPost = () => {
             <div className="status-input">
                 <textarea id='inp-usr' onKeyUp={textAreaAdjust} placeholder="What do you want to post?" rows="4"></textarea>
                 <div className="btn-group">
-                    <input type="file" id="file-input" accept="image/*" />
-                    <button>
-                        <label htmlFor="file-input" className="file-input-label">
-                            <i className="fas fa-image"  style={{color: "#FFBF00"}}></i> <span>Photo</span>
-                        </label>
-                    </button>
-                    <input type="file" id="file-input" accept="image/*" />
-                    <button>
-                        <label htmlFor="file-input" className="file-input-label">
-                            <i className="fas fa-video"  style={{color: "red"}}></i> <span>Video</span>
-                        </label>
-                    </button>
                     <button className="post-button">
-                        <i className="fa fa-paper-plane"  style={{color: "green"}}></i> Post
+                        <i className="fa fa-paper-plane"  style={{color: "rgb(0, 119, 255)"}}></i> Post
                     </button>
                 </div>
             </div>

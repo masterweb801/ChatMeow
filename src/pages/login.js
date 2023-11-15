@@ -16,29 +16,22 @@ const Login = () => {
 
     async function handleLoginClick(event) {
         event.preventDefault();
-
-        axios({
-            url: "http://localhost:5000/api/login",
+        
+        const url = "http://localhost:5000/api/login"
+        const response = await fetch(url, {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json",
             },
-            data: JSON.stringify({ email, password }),
-        })
-            .then((res) => {
-                alert(res.data.message);
-                setLoggedIn(true);
-            })
-
-            .catch((err) => {
-                if (err.response.data.error) {
-                    alert(err.response.data.error);
-                } else if (err.response.data.errors[0].msg) {
-                    alert(err.response.data.errors[0].msg);
-                } else {
-                    console.log(err.response.data);
-                }
-            });
+            body: JSON.stringify({ email, password })
+        });
+        const json = await response.json();
+        if (json.success) {
+            localStorage.setItem('token', json.authtoken)
+        } else {
+            alert("Invalid Credentials")
+            console.log(json)
+        }
 
         setEmail("");
         setPassword("");
