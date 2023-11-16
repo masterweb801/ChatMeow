@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require('cors');
-const Post = require('../models/Posts');
-const User = require('../models/Users');
-const fetchUser = require('../middleware/fetchUser');
+const Post = require('../../models/Posts');
+const User = require('../../models/Users');
+const fetchUser = require('../../middleware/fetchUser');
 const { body, validationResult } = require('express-validator');
 
 const router = express.Router();

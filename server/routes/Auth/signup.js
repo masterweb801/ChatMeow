@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const User = require('../models/Users');
+const User = require('../../models/Users');
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');

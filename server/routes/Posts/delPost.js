@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const Post = require('../models/Posts');
-const fetchUser = require('../middleware/fetchUser');
+const Post = require('../../models/Posts');
+const fetchUser = require('../../middleware/fetchUser');
 
 const router = express.Router();
 router.use(cors());

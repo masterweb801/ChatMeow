@@ -1,22 +1,19 @@
 import React, { useState } from 'react'
 import { Navigate } from "react-router-dom";
-import axios from "axios";
 import noimg from "../images/profile.jpg";
-
 import "./login.css";
 
-const Login = () => {
+const Login = (props) => {
     document.title = "ChatMeow - Login / Signup";
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [cpassword, setcPassword] = useState("");
-    const [loggedIn, setLoggedIn] = useState(false);
     const [file, setFile] = useState(noimg);
 
     async function handleLoginClick(event) {
         event.preventDefault();
-        
+
         const url = "http://localhost:5000/api/login"
         const response = await fetch(url, {
             method: "POST",
@@ -28,6 +25,7 @@ const Login = () => {
         const json = await response.json();
         if (json.success) {
             localStorage.setItem('token', json.authtoken)
+            props.setLoggedIn(true);
         } else {
             alert("Invalid Credentials")
             console.log(json)
@@ -46,30 +44,23 @@ const Login = () => {
         } else if (password === "") {
             alert("Please enter your password!");
         } else if (password === cpassword) {
-            axios({
-                url: "http://localhost:5000/api/signup",
+            const url = "http://localhost:5000/api/signup"
+            const response = await fetch(url, {
                 method: "POST",
                 headers: {
-                    'Content-Type': 'application/json'
+                    "Content-Type": "application/json",
                 },
-                data: JSON.stringify({ name, email, password }),
-            })
-                .then((res) => {
-                    sessionStorage.setItem("user", res.data.user);
-                    sessionStorage.setItem("loggedIn", true);
-                    alert(res.data.message);
-                    setLoggedIn(true);
-                })
+                body: JSON.stringify({ name, email, password })
+            });
+            const json = await response.json();
+            if (json.success) {
+                localStorage.setItem('token', json.authtoken)
+                props.setLoggedIn(true);
+            } else {
+                alert("Invalid Credentials")
+                console.log(json)
+            }
 
-                .catch((err) => {
-                    if (err.response.data.error) {
-                        alert(err.response.data.error);
-                    } else if (err.response.data.errors[0].msg) {
-                        alert(err.response.data.errors[0].msg);
-                    } else {
-                        console.log(err.response.data);
-                    }
-                });
             setName("");
             setEmail("");
             setPassword("");
@@ -104,7 +95,7 @@ const Login = () => {
 
     return (
         <div className="container-for-login">
-            {loggedIn === true ? <Navigate to="/" /> : ""}
+            {props.loggedIn === true ? <Navigate to="/" /> : ""}
             <input type="checkbox" id="check" />
             <div className="login form">
                 <header>Login</header>

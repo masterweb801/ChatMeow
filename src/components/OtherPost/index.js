@@ -1,46 +1,71 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./index.css"
 import profile from "../../images/profile.jpg"
 import PropTypes from 'prop-types'
 
 
 const OtherPost = (props) => {
-    const togLike = () => {
+    const [likes, setLikes] = useState();
+    const togLike = async () => {
         let likeBtn = document.getElementById('like' + props.id);
 
-        if (likeBtn.classList.contains("far")) {
+        const authtoken = localStorage.getItem("token");
+        const url = "http://localhost:5000/api/likePost";
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": authtoken
+            },
+            body: JSON.stringify({ id: props.item._id })
+        });
+        const json = await response.json();
+        let likers = json[0].likers;
+
+        if (likers.includes(json[1])) {
             likeBtn.classList.add("fas");
             likeBtn.classList.remove("far");
             likeBtn.style.color = "red";
-        } else if (likeBtn.classList.contains("fas")) {
+            setLikes(json[0].likes);
+        } else if (!likers.includes(json[1])) {
             likeBtn.classList.add("far");
             likeBtn.classList.remove("fas");
             likeBtn.style.color = "black";
+            setLikes(json[0].likes);
         }
     }
 
     const togText = () => {
-        let text = document.getElementById(`text-${props.id}`).innerText; 
+        let text = document.getElementById(`text-${props.id}`).innerText;
         navigator.clipboard.writeText(text);
         alert("Successfully Copied To Clipboard")
     }
+
+    useEffect(() => {
+        let likeBtn = document.getElementById('like' + props.id);
+        let likers = props.item.likers;
+        setLikes(props.item.likes);
+        if (likers.includes(props.uid)) {
+            likeBtn.classList.add("fas");
+            likeBtn.classList.remove("far");
+            likeBtn.style.color = "red";
+        }
+    }, [props.uid, props.id, props.item.likers, props.item.likes]);
 
     return (
         <div className="post">
             <div className="other-profile-pic">
                 <img src={profile} alt="here" height="40" width="40" />
                 <div className="other-top-label">
-                    <label>{props.name}</label>
+                    <label>{props.item.userName}</label>
                     <label>4 hrs.</label>
                 </div>
             </div>
             <div className="post-text">
-                <p id={`text-${props.id}`}>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Recusandae nihil placeat debitis facere asperiores,
-                    sint quam sequi sed repellendus eius sunt quo quas tenetur earum impedit dicta?
-                    Blanditiis, sapiente maiores.</p>
+                <p id={`text-${props.id}`}>{props.item.text}</p>
             </div>
             <div className="other-btn-group">
+                <div className='like-number'>{likes}</div>
                 <button className='like-btn' onClick={togLike}>
                     <i className="far fa-heart" id={"like" + props.id}></i>
                 </button>
@@ -55,6 +80,7 @@ const OtherPost = (props) => {
 OtherPost.propTypes = {
     name: PropTypes.string,
     id: PropTypes.string,
+    item: PropTypes.object
 }
 
 export default OtherPost

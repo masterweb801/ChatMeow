@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
@@ -10,6 +10,7 @@ import Notifications from './pages/notifications';
 
 function App() {
   const [mode, setMode] = useState("light");
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const toggle = () => {
     if (mode === "light") {
@@ -22,17 +23,23 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    if (localStorage.getItem("token") !== null) {
+      setLoggedIn(true);
+    }
+  }, []);
+
   return (
     <Router>
-      <Navbar title="Mobashshir" mode={mode} toggle={toggle} />
+      <Navbar mode={mode} toggle={toggle} loggedIn={loggedIn} />
       <div className="main">
-      <Routes>
-        <Route path="/" element={<Home mode={mode}/>} />
-        <Route path="/messages" element={<Chat mode={mode}/>} />
-        <Route path="/notifications" element={<Notifications />} />
-        <Route path="/logout" element={<Logout />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Home mode={mode} loggedIn={loggedIn} />} />
+          <Route path="/messages" element={<Chat mode={mode} loggedIn={loggedIn} />} />
+          <Route path="/notifications" element={<Notifications loggedIn={loggedIn} />} />
+          <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn} />} />
+          <Route path="/login" element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
+        </Routes>
       </div>
     </Router>
   );

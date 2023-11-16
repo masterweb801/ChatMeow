@@ -39,7 +39,7 @@ const Navbar = (props) => {
                                         <i className={`fas fa-${props.mode === "light" ? "moon" : "sun"}`}></i> &nbsp; {props.mode === "light" ? "Dark" : "Light"} Mode
                                     </button>
                                 </li>
-                                {sessionStorage.getItem("loggedIn") === null ? <li>
+                                {props.loggedIn === false ? <li>
                                     <NavLink to="/login" activestyle='true'>
                                         <i className="fas fa-sign-in"></i> &nbsp; Login / Signup
                                     </NavLink>
@@ -63,7 +63,6 @@ const Navbar = (props) => {
 };
 
 Navbar.propTypes = {
-    title: PropTypes.string.isRequired,
     mode: PropTypes.string.isRequired,
     toggle: PropTypes.func.isRequired
 };

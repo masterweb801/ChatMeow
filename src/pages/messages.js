@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Navigate } from 'react-router-dom';
 import Search from "../components/Search";
 import PropTypes from 'prop-types'
 import OtherChat from '../components/OtherChat';
@@ -11,6 +12,7 @@ const Chat = (props) => {
 
     return (
         <div className='messages'>
+            {props.loggedIn === false ? <Navigate to="/login" /> : ""}
             <div className="users">
                 <Search mode={props.mode} />
                 <OtherChat name="MD Mobashshirul Karim" lastMsg="Hi" id="1b" swt={sfElement} />
