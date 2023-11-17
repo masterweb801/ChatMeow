@@ -23,6 +23,7 @@ router.post('/', fetchUser, [
         const post = new Post({
             user: req.user.id,
             userName: user.name,
+            userImg: user.img,
             text: text,
         })
         const savedPost = await post.save()

@@ -31,8 +31,10 @@ function App() {
 
   return (
     <Router>
-      <Navbar mode={mode} toggle={toggle} loggedIn={loggedIn} />
-      <div className="main">
+      <header>
+        <Navbar mode={mode} toggle={toggle} loggedIn={loggedIn} />
+      </header>
+      <main>
         <Routes>
           <Route path="/" element={<Home mode={mode} loggedIn={loggedIn} />} />
           <Route path="/messages" element={<Chat mode={mode} loggedIn={loggedIn} />} />
@@ -40,7 +42,10 @@ function App() {
           <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn} />} />
           <Route path="/login" element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
         </Routes>
-      </div>
+      </main>
+      <footer>
+
+      </footer>
     </Router>
   );
 }

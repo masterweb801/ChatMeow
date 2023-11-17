@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 
 const OtherPost = (props) => {
     const [likes, setLikes] = useState();
+    const [img, setImage] = useState(profile);
     const togLike = async () => {
         let likeBtn = document.getElementById('like' + props.id);
 
@@ -50,12 +51,15 @@ const OtherPost = (props) => {
             likeBtn.classList.remove("far");
             likeBtn.style.color = "red";
         }
-    }, [props.uid, props.id, props.item.likers, props.item.likes]);
+        if (props.item.userImg) {
+            setImage(props.item.userImg);
+        }
+    }, [props.uid, props.id, props.item.likers, props.item.likes, props.item.userImg]);
 
     return (
         <div className="post">
             <div className="other-profile-pic">
-                <img src={profile} alt="here" height="40" width="40" />
+                <img src={img} alt="here" height="40" width="40" />
                 <div className="other-top-label">
                     <label>{props.item.userName}</label>
                     <label>4 hrs.</label>

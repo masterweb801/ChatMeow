@@ -11,6 +11,7 @@ const Home = (props) => {
         getUser();
         fetchPosts();
     }, []);
+
     const [posts, setposts] = useState([])
     const [uid, setuid] = useState()
     const [user, setuser] = useState({})
@@ -26,9 +27,16 @@ const Home = (props) => {
             }
         });
         const json = await response.json();
-        setposts(json[0])
+        let rposts = json[0];
+        rposts.reverse();
+        setposts(rposts)
         setuid(json[1]);
     }
+
+    const reload = () => {
+        getUser();
+        fetchPosts();
+    };
 
     const getUser = async () => {        
         const authtoken = localStorage.getItem("token");
@@ -49,7 +57,7 @@ const Home = (props) => {
             {props.loggedIn === false ? <Navigate to="/login" /> : ""}
             <div className="chcon"></div>
             <div className="post-container">
-                <UserPost user={user}/>
+                <UserPost user={user} reload={reload} />
                 {posts.map((item, index) => {
                     return <OtherPost key={index} uid={uid} item={item} id={index.toString()} />
                 })}

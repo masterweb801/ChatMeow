@@ -34,6 +34,7 @@ router.post('/', [
                 name: req.body.name,
                 password: secPass,
                 email: req.body.email,
+                img: req.body.file
             });
             const data = {
                 user: {

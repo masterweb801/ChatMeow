@@ -8,9 +8,17 @@ router.use(cors());
 
 router.post('/', fetchUser, async (req, res) => {
     let success = false;
+    let uid = req.user.id;
+    let opt = [];
     try {
         const users = await User.find({}).select("-password");
-        res.json(users);
+        for (let i = 0; i < users.length; i++) {
+            // opt.push(users[i]._id);
+            if (users[i]._id.toString() !== uid) {
+                opt.push(users[i]);
+            }
+        }
+        res.json(opt);
     } catch (error) {
         console.error(error.message);
         res.status(500).json({ success, message: "Internal Server Error" });
