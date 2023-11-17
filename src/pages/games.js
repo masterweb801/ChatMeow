@@ -1,8 +1,8 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
 
-const Notifications = (props) => {
-    document.title = "ChatMeow - Notifications"
+const Games = (props) => {
+    document.title = "ChatMeow - Games"
     return (
         <div>
             {props.loggedIn === false ? <Navigate to="/login" /> : ""}
@@ -10,4 +10,4 @@ const Notifications = (props) => {
     )
 }
 
-export default Notifications
+export default Games

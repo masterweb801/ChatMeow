@@ -6,7 +6,7 @@ import Home from "./pages";
 import Chat from "./pages/messages";
 import Logout from "./pages/logout";
 import Login from './pages/login';
-import Notifications from './pages/notifications';
+import Games from './pages/games';
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -38,7 +38,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home mode={mode} loggedIn={loggedIn} />} />
           <Route path="/messages" element={<Chat mode={mode} loggedIn={loggedIn} />} />
-          <Route path="/notifications" element={<Notifications loggedIn={loggedIn} />} />
+          <Route path="/games" element={<Games loggedIn={loggedIn} />} />
           <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn} />} />
           <Route path="/login" element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
         </Routes>

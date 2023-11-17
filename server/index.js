@@ -23,6 +23,10 @@ app.use("/api/likePost", require("./routes/Posts/likePost"));
 app.use("/api/allPosts", require("./routes/Posts/allPosts"));
 app.use("/api/delPost", require("./routes/Posts/delPost"));
 
+// Chat
+app.use("/api/newChat", require("./routes/Chat/newChat"));
+app.use("/api/allChat", require("./routes/Chat/allChat"));
+
 app.listen(port, () => {
     console.log(`ChatMeow server listening on port ${port}`)
 })

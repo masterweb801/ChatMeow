@@ -25,8 +25,8 @@ const Navbar = (props) => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/notifications" activestyle='true'>
-                                <i className="fas fa-bell"></i> &nbsp; Notifications
+                            <NavLink to="/games" activestyle='true'>
+                                <i className="fas fa-gamepad"></i> &nbsp; Games
                             </NavLink>
                         </li>
                         <li>

@@ -26,7 +26,7 @@ const Chat = (props) => {
             }
         });
         const json = await response.json();
-        setUsers(json)
+        setUsers(json);
     }
 
     return (
