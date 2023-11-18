@@ -13,7 +13,6 @@ router.post('/', fetchUser, async (req, res) => {
     try {
         const users = await User.find({}).select("-password");
         for (let i = 0; i < users.length; i++) {
-            // opt.push(users[i]._id);
             if (users[i]._id.toString() !== uid) {
                 opt.push(users[i]);
             }

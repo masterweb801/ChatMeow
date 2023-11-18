@@ -23,18 +23,10 @@
     text-align: left;
 }
 
-.usr-card .usr-card-label label:first-child {
+.usr-card .usr-card-label label {
     font-size: 15px;
     font-family: monospace;
     font-weight: 900;
-}
-
-.usr-card .usr-card-label label:last-child {
-    font-size: 15px;
-    font-family: monospace;
-    font-weight: 900;
-    color: gray;
-    margin-left: 5px;
 }
 
 .usr-card img {

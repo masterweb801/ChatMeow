@@ -1,16 +1,29 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import profile from "../../images/profile.jpg"
 import "./index.css"
 
-const MessageBox = () => {
+const MessageBox = (props) => {
+    const [img, setImage] = useState(profile);
+    
+    useEffect(() => {
+        if (props.item) {
+            setImage(props.item[2]);
+        }
+    }, [props.item]);
+
+    const close = () => {
+        props.tog(false);
+    }
+
     return (
         <div className='chat-area'>
             <div className='chat-header'>
-                <img src={profile} alt="Person" width="96" height="96" />
+                <img src={img} alt="Person" width="96" height="96" />
                 <div className='usr-card-label'>
-                    <label>MD Mobashshirul Karim</label>
+                    <label>{props.item[1]}</label>
                     <label>Active Now</label>
                 </div>
+                <button className="close" onClick={close}>X</button>
             </div>
             <div className="chat-box">
 
@@ -21,7 +34,7 @@ const MessageBox = () => {
                 </div>
 
                 <div className="chat incoming">
-                    <img src={profile} alt="" />
+                    <img src={img} alt="" />
                         <div className="details">
                             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum, laborum! Officiis iure eius voluptas ipsum! Mollitia alias in pariatur repudiandae. Architecto voluptatem voluptatum repudiandae quaerat reprehenderit deleniti distinctio vero perferendis!</p>
                         </div>

@@ -10,7 +10,7 @@ router.post('/', fetchUser, async (req, res) => {
     let success = false;
     try {
         const { id } = req.body;
-        const chat = await Message.find({in_user_id: req.user.id, out_user_id: id});
+        const chat = await Message.find({ $or: [{ in_user_id: req.user.id, out_user_id: id }, { in_user_id: id, out_user_id: req.user.id }] });
         res.json(chat);
     } catch (error) {
         console.error(error.message);
