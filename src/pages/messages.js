@@ -22,16 +22,18 @@ const Chat = (props) => {
     };
 
     const toggle = () => {
-        let chat = document.getElementById("chat");
-        let user = document.getElementById("users");
-        if (window.innerWidth <= 872) {
-            if (focus === true) {
-                chat.style.display = "none";
-                user.style.display = "block";
-            } else {
-                chat.style.display = "block";
-                user.style.display = "none";
+        try {
+            if (window.innerWidth <= 872) {
+                if (focus === true) {
+                    document.getElementById("aside-messages").style.display = "none";
+                    document.getElementById("users").style.display = "block";
+                } else {
+                    document.getElementById("aside-messages").style.display = "block";
+                    document.getElementById("users").style.display = "none";
+                }
             }
+        } catch (error) {
+            console.log(error);
         }
     }
 
@@ -59,11 +61,11 @@ const Chat = (props) => {
                 })}
             </div>
             {focus === false ?
-                <aside className="chat" id="chat">
+                <aside className="chat" id="aside-messages">
                     <div className='nsel'>Select an User to Start Conversation</div>
                 </aside> :
-                <aside className="chat">
-                    <MessageBox item={fElement} tog={setFocus} />
+                <aside className="chat"  id="aside-messages">
+                    <MessageBox item={fElement} tog={setFocus} back={toggle} />
                 </aside>
             }
         </div>

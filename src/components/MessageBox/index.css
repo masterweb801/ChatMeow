@@ -69,10 +69,6 @@
         inset 0 -32px 32px -32px rgb(0 0 0 / 5%);
 }
 
-.chat-box .chat {
-    margin: 15px 0;
-}
-
 .chat-box .chat p {
     word-wrap: break-word;
     padding: 8px 16px;
@@ -130,10 +126,11 @@
     height: 45px;
     width: calc(100% - 58px);
     font-size: 16px;
-    padding: 0 13px;
+    padding: 10px 13px;
     border: 1px solid #e6e6e6;
     outline: none;
     border-radius: 5px 0 0 5px;
+    resize: none;
 }
 
 .typing-area .msg-send {
