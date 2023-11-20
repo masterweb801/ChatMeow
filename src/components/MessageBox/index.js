@@ -5,7 +5,7 @@ import "./index.css"
 const MessageBox = (props) => {
     const [img, setImage] = useState(profile);
     const [chats, setChats] = useState([]);
-    const [message, setMessage] = useState();
+    const [message, setMessage] = useState("");
     const id = props.item[0];
 
     const close = () => {
@@ -17,6 +17,14 @@ const MessageBox = (props) => {
         if (props.item) {
             setImage(props.item[2]);
         }
+        setTimeout(() => {
+            try {
+                let elem = document.getElementById('all-messages');
+                elem.scrollTop = elem.scrollHeight;
+            } catch (error) {
+                
+            }
+        }, 1500);
         const fetchChats = async () => {
             const authtoken = localStorage.getItem("token");
             const url = "http://localhost:5000/api/allChat";
@@ -31,11 +39,11 @@ const MessageBox = (props) => {
             const json = await response.json();
             setChats(json);
         };
-
         const interval = setInterval(() => {
             fetchChats();
         }, 1000);
         return () => clearInterval(interval);
+        
     }, [props.item, id]);
 
     const newChat = async (event) => {
@@ -92,8 +100,8 @@ const MessageBox = (props) => {
 
             </div>
             <form className="typing-area" onSubmit={newChat}>
-                <input type="text" id="inp-usr" name="message" value={message} onChange={(e) => { setMessage(e.target.value) }} className="input-field" placeholder="Type a message here..." />
-                <button className='msg-send'><i className="fas fa-paper-plane"></i></button>
+                <input type="text" id="inp-usr" value={message} onChange={(e) => { setMessage(e.target.value) }} className="input-field" placeholder="Type a message here..." />
+                <button type='submit' className='msg-send'><i className="fas fa-paper-plane"></i></button>
             </form>
         </div>
     )

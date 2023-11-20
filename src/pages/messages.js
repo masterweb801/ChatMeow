@@ -61,10 +61,10 @@ const Chat = (props) => {
                 })}
             </div>
             {focus === false ?
-                <aside className="chat" id="aside-messages">
+                <aside className="chats" id="aside-messages">
                     <div className='nsel'>Select an User to Start Conversation</div>
                 </aside> :
-                <aside className="chat"  id="aside-messages">
+                <aside className="chats"  id="aside-messages">
                     <MessageBox item={fElement} tog={setFocus} back={toggle} />
                 </aside>
             }
