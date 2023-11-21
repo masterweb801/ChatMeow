@@ -3,6 +3,7 @@ import "./index.css"
 import profile from "../../images/profile.jpg"
 import PropTypes from 'prop-types'
 
+const api = process.env.REACT_APP_API
 
 const OtherPost = (props) => {
     const [likes, setLikes] = useState();
@@ -11,7 +12,7 @@ const OtherPost = (props) => {
         let likeBtn = document.getElementById('like' + props.id);
 
         const authtoken = localStorage.getItem("token");
-        const url = "http://localhost:5000/api/likePost";
+        const url = api + "/api/likePost";
         const response = await fetch(url, {
             method: "POST",
             headers: {

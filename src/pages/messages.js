@@ -6,6 +6,8 @@ import OtherChat from '../components/OtherChat';
 import "./messages.css"
 import MessageBox from '../components/MessageBox';
 
+const api = process.env.REACT_APP_API
+
 const Chat = (props) => {
     const [fElement, setElement] = useState(null);
     const [focus, setFocus] = useState(false);
@@ -39,7 +41,7 @@ const Chat = (props) => {
 
     const fetchUsers = async () => {
         const authtoken = localStorage.getItem("token");
-        const url = "http://localhost:5000/api/allUser"
+        const url = api + "/api/allUser";
         const response = await fetch(url, {
             method: "POST",
             headers: {

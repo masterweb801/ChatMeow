@@ -5,6 +5,8 @@ import ScrollToTop from "react-scroll-to-top";
 import "./index.css";
 import OtherPost from "../components/OtherPost";
 
+const api = process.env.REACT_APP_API
+
 const Home = (props) => {
     useEffect(() => {
         document.title = "ChatMeow";
@@ -18,7 +20,7 @@ const Home = (props) => {
     
     const fetchPosts = async () => {
         const authtoken = localStorage.getItem("token");
-        const url = "http://localhost:5000/api/allPosts"
+        const url = api + "/api/allPosts";
         const response = await fetch(url, {
             method: "POST",
             headers: {
@@ -40,7 +42,7 @@ const Home = (props) => {
 
     const getUser = async () => {        
         const authtoken = localStorage.getItem("token");
-        const url = "http://localhost:5000/api/getUser"
+        const url = api + "/api/getUser";
         const response = await fetch(url, {
             method: "POST",
             headers: {

@@ -3,6 +3,8 @@ import { Navigate } from "react-router-dom";
 import noimg from "../images/profile.jpg";
 import "./login.css";
 
+const api = process.env.REACT_APP_API
+
 const Login = (props) => {
     document.title = "ChatMeow - Login / Signup";
     const [name, setName] = useState("");
@@ -14,7 +16,7 @@ const Login = (props) => {
     async function handleLoginClick(event) {
         event.preventDefault();
 
-        const url = "http://localhost:5000/api/login"
+        const url = api + "/api/login";
         const response = await fetch(url, {
             method: "POST",
             headers: {
@@ -44,7 +46,7 @@ const Login = (props) => {
         } else if (password === "") {
             alert("Please enter your password!");
         } else if (password === cpassword) {
-            const url = "http://localhost:5000/api/signup"
+            const url = api + "/api/signup"
             const response = await fetch(url, {
                 method: "POST",
                 headers: {

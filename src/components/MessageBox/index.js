@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import profile from "../../images/profile.jpg"
 import "./index.css"
 
+const api = process.env.REACT_APP_API
+
 const MessageBox = (props) => {
     const [img, setImage] = useState(profile);
     const [chats, setChats] = useState([]);
@@ -27,7 +29,7 @@ const MessageBox = (props) => {
         }, 1500);
         const fetchChats = async () => {
             const authtoken = localStorage.getItem("token");
-            const url = "http://localhost:5000/api/allChat";
+            const url = api + "/api/allChat";
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
@@ -49,7 +51,7 @@ const MessageBox = (props) => {
     const newChat = async (event) => {
         event.preventDefault();
         if (message !== "") {
-            const url = "http://localhost:5000/api/newChat";
+            const url = api + "/api/newChat";
             const authtoken = localStorage.getItem("token");
             const response = await fetch(url, {
                 method: "POST",

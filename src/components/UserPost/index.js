@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import "./index.css"
 import photo from '../../images/profile.jpg'
 
+const api = process.env.REACT_APP_API
+
 const UserPost = (props) => {
     const [text, setText] = useState("");
     const [img, setImage] = useState(photo);
@@ -13,7 +15,7 @@ const UserPost = (props) => {
     }
 
     async function Post() {
-        const url = "http://localhost:5000/api/post";
+        const url = api + "/api/post";
         const authtoken = localStorage.getItem("token");
         const response = await fetch(url, {
             method: "POST",
