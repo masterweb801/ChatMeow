@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Navigate } from "react-router-dom";
-import noimg from "../images/profile.jpg";
 import "./login.css";
+import altrn from "../images/profile.jpg"
+import imageCompression from 'browser-image-compression';
 
 const api = process.env.REACT_APP_API
 
@@ -11,7 +12,7 @@ const Login = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [cpassword, setcPassword] = useState("");
-    const [file, setFile] = useState(noimg);
+    const [file, setFile] = useState();
 
     async function handleLoginClick(event) {
         event.preventDefault();
@@ -67,7 +68,7 @@ const Login = (props) => {
             setEmail("");
             setPassword("");
             setcPassword("");
-            setFile(noimg);
+            setFile(altrn);
         } else {
             alert("Passwords do not match!");
         }
@@ -78,20 +79,30 @@ const Login = (props) => {
         let opt = event.target.files[0];
         if (opt) {
             image.src = URL.createObjectURL(opt);
-            let outAsBinary = await new Promise((resolve, reject) => {
-                const reader = new FileReader();
-
-                reader.onload = (event) => {
-                    resolve(event.target.result);
-                };
-
-                reader.onerror = (err) => {
-                    reject(err);
-                };
-
-                reader.readAsDataURL(opt);
-            });
-            setFile(outAsBinary);
+            const options = {
+                maxSizeMB: 1,
+                maxWidthOrHeight: 400,
+                useWebWorker: true
+            }
+            try {
+                const compressedFile = await imageCompression(opt, options);
+                let outAsBinary = await new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+    
+                    reader.onload = (event) => {
+                        resolve(event.target.result);
+                    };
+    
+                    reader.onerror = (err) => {
+                        reject(err);
+                    };
+    
+                    reader.readAsDataURL(compressedFile);
+                });
+                setFile(outAsBinary);
+            } catch (error) {
+                console.log(error);
+            }
         }
     }
 
@@ -122,7 +133,7 @@ const Login = (props) => {
                             <span>Change Image</span>
                         </label>
                         <input type='file' id='file' onChange={selectImg} />
-                        <img src={file} id="output" width="200" alt='' />
+                        <img src={altrn} id="output" width="200" alt='' />
                     </div>
 
                     <input type="text" value={name} onChange={(e) => { setName(e.target.value) }} placeholder="Enter your name" required />
