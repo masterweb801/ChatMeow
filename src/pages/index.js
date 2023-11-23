@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useCallback } from "react";
 import { Navigate } from "react-router-dom";
 import UserPost from "../components/UserPost";
 import ScrollToTop from "react-scroll-to-top";
@@ -8,17 +8,11 @@ import "./index.css";
 const api = process.env.REACT_APP_API
 
 const Home = (props) => {
-    useEffect(() => {
-        document.title = "ChatMeow";
-        getUser();
-        fetchPosts();
-    }, []);
-
     const [posts, setposts] = useState([])
     const [uid, setuid] = useState()
     const [user, setuser] = useState({})
 
-    const fetchPosts = async () => {
+    const fetchPosts = useCallback(async () => {
         const authtoken = localStorage.getItem("token");
         const url = api + "/api/allPosts";
         try {
@@ -37,14 +31,14 @@ const Home = (props) => {
         } catch (error) {
             props.error(true);
         }
-    }
+    }, [props])
 
     const reload = () => {
         getUser();
         fetchPosts();
     };
 
-    const getUser = async () => {
+    const getUser = useCallback(async () => {
         const authtoken = localStorage.getItem("token");
         const url = api + "/api/getUser";
         try {
@@ -60,8 +54,13 @@ const Home = (props) => {
         } catch (error) {
             props.error(true);
         }
+    }, [props])
 
-    }
+    useEffect(() => {
+        document.title = "ChatMeow";
+        getUser();
+        fetchPosts();
+    }, [fetchPosts, getUser]);
 
     return (
         <div className="container">

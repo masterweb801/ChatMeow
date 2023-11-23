@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Navigate } from 'react-router-dom';
 import Search from "../components/Search";
 import PropTypes from 'prop-types'
@@ -12,11 +12,6 @@ const Chat = (props) => {
     const [fElement, setElement] = useState(null);
     const [focus, setFocus] = useState(false);
     const [users, setUsers] = useState([])
-
-    useEffect(() => {
-        document.title = "ChatMeow - Messages";
-        fetchUsers();
-    }, []);
 
     const sfElement = (value) => {
         setElement(value);
@@ -39,7 +34,7 @@ const Chat = (props) => {
         }
     }
 
-    const fetchUsers = async () => {
+    const fetchUsers = useCallback(async () => {
         const authtoken = localStorage.getItem("token");
 
         try {
@@ -56,7 +51,12 @@ const Chat = (props) => {
         } catch (error) {
             props.error(true)
         }
-    };
+    }, [props]);
+
+    useEffect(() => {
+        document.title = "ChatMeow - Messages";
+        fetchUsers();
+    }, [fetchUsers]);
 
     return (
         <div className='messages'>
