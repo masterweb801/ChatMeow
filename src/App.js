@@ -7,10 +7,12 @@ import Chat from "./pages/messages";
 import Logout from "./pages/logout";
 import Login from './pages/login';
 import Games from './pages/games';
+import Error from './components/Error Pages/500';
 
 function App() {
   const [mode, setMode] = useState("light");
   const [loggedIn, setLoggedIn] = useState(false);
+  const [error, setError] = useState(false);
 
   const toggle = () => {
     if (mode === "light") {
@@ -31,21 +33,26 @@ function App() {
 
   return (
     <Router>
-      <header>
-        <Navbar mode={mode} toggle={toggle} loggedIn={loggedIn} />
-      </header>
-      <main>
-        <Routes>
-          <Route path="/" element={<Home mode={mode} loggedIn={loggedIn} />} />
-          <Route path="/messages" element={<Chat mode={mode} loggedIn={loggedIn} />} />
-          <Route path="/games" element={<Games loggedIn={loggedIn} />} />
-          <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn} />} />
-          <Route path="/login" element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
-        </Routes>
-      </main>
-      <footer>
+      {error === true ?
+        <>
+          <header>
+            <Navbar mode={mode} toggle={toggle} loggedIn={loggedIn} />
+          </header>
+          <main>
+            <Routes>
+              <Route path="/" element={<Home mode={mode} loggedIn={loggedIn} error={setError} />} />
+              <Route path="/messages" element={<Chat mode={mode} loggedIn={loggedIn} error={setError} />} />
+              <Route path="/games" element={<Games loggedIn={loggedIn} error={setError} />} />
+              <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn} />} />
+              <Route path="/login" element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn}  error={setError} />} />
+            </Routes>
+          </main>
+          <footer>
 
-      </footer>
+          </footer>
+        </> :
+        <Error />
+      }
     </Router>
   );
 }

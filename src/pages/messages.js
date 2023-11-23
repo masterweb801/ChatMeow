@@ -16,7 +16,7 @@ const Chat = (props) => {
     useEffect(() => {
         document.title = "ChatMeow - Messages";
         fetchUsers();
-    }, []);
+    });
 
     const sfElement = (value) => {
         setElement(value);
@@ -41,16 +41,21 @@ const Chat = (props) => {
 
     const fetchUsers = async () => {
         const authtoken = localStorage.getItem("token");
-        const url = api + "/api/allUser";
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "auth-token": authtoken
-            }
-        });
-        const json = await response.json();
-        setUsers(json);
+
+        try {
+            const url = api + "/api/allUser";
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth-token": authtoken
+                }
+            });
+            const json = await response.json();
+            setUsers(json);
+        } catch (error) {
+            props.error(true)
+        }
     };
 
     return (
@@ -66,7 +71,7 @@ const Chat = (props) => {
                 <aside className="chats" id="aside-messages">
                     <div className='nsel'>Select an User to Start Conversation</div>
                 </aside> :
-                <aside className="chats"  id="aside-messages">
+                <aside className="chats" id="aside-messages">
                     <MessageBox item={fElement} tog={setFocus} back={toggle} />
                 </aside>
             }

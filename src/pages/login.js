@@ -17,25 +17,29 @@ const Login = (props) => {
     async function handleLoginClick(event) {
         event.preventDefault();
 
-        const url = api + "/api/login";
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email, password })
-        });
-        const json = await response.json();
-        if (json.success) {
-            localStorage.setItem('token', json.authtoken)
-            props.setLoggedIn(true);
-        } else {
-            alert("Invalid Credentials")
-            console.log(json)
-        }
+        try {
+            const url = api + "/api/login";
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password })
+            });
+            const json = await response.json();
+            if (json.success) {
+                localStorage.setItem('token', json.authtoken)
+                props.setLoggedIn(true);
+            } else {
+                alert("Invalid Credentials")
+                console.log(json)
+            }
 
-        setEmail("");
-        setPassword("");
+            setEmail("");
+            setPassword("");
+        } catch (error) {
+            props.error(true)
+        }
     }
 
     async function handleSignupClick(event) {
@@ -47,28 +51,32 @@ const Login = (props) => {
         } else if (password === "") {
             alert("Please enter your password!");
         } else if (password === cpassword) {
-            const url = api + "/api/signup"
-            const response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ name, email, password, file })
-            });
-            const json = await response.json();
-            if (json.success) {
-                localStorage.setItem('token', json.authtoken)
-                props.setLoggedIn(true);
-            } else {
-                alert("Invalid Credentials")
-                console.log(json)
-            }
+            try {
+                const url = api + "/api/signup"
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ name, email, password, file })
+                });
+                const json = await response.json();
+                if (json.success) {
+                    localStorage.setItem('token', json.authtoken)
+                    props.setLoggedIn(true);
+                } else {
+                    alert("Invalid Credentials")
+                    console.log(json)
+                }
 
-            setName("");
-            setEmail("");
-            setPassword("");
-            setcPassword("");
-            setFile(altrn);
+                setName("");
+                setEmail("");
+                setPassword("");
+                setcPassword("");
+                setFile(altrn);
+            } catch (error) {
+                props.error(true)
+            }
         } else {
             alert("Passwords do not match!");
         }
@@ -88,15 +96,15 @@ const Login = (props) => {
                 const compressedFile = await imageCompression(opt, options);
                 let outAsBinary = await new Promise((resolve, reject) => {
                     const reader = new FileReader();
-    
+
                     reader.onload = (event) => {
                         resolve(event.target.result);
                     };
-    
+
                     reader.onerror = (err) => {
                         reject(err);
                     };
-    
+
                     reader.readAsDataURL(compressedFile);
                 });
                 setFile(outAsBinary);

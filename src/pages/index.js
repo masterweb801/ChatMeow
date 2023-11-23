@@ -2,8 +2,8 @@ import { React, useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import UserPost from "../components/UserPost";
 import ScrollToTop from "react-scroll-to-top";
-import "./index.css";
 import OtherPost from "../components/OtherPost";
+import "./index.css";
 
 const api = process.env.REACT_APP_API
 
@@ -12,27 +12,31 @@ const Home = (props) => {
         document.title = "ChatMeow";
         getUser();
         fetchPosts();
-    }, []);
+    });
 
     const [posts, setposts] = useState([])
     const [uid, setuid] = useState()
     const [user, setuser] = useState({})
-    
+
     const fetchPosts = async () => {
         const authtoken = localStorage.getItem("token");
         const url = api + "/api/allPosts";
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "auth-token": authtoken
-            }
-        });
-        const json = await response.json();
-        let rposts = json[0];
-        rposts.reverse();
-        setposts(rposts)
-        setuid(json[1]);
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth-token": authtoken
+                }
+            });
+            const json = await response.json();
+            let rposts = json[0];
+            rposts.reverse();
+            setposts(rposts)
+            setuid(json[1]);
+        } catch (error) {
+            props.error(true);
+        }
     }
 
     const reload = () => {
@@ -40,18 +44,23 @@ const Home = (props) => {
         fetchPosts();
     };
 
-    const getUser = async () => {        
+    const getUser = async () => {
         const authtoken = localStorage.getItem("token");
         const url = api + "/api/getUser";
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "auth-token": authtoken
-            }
-        });
-        const json = await response.json();
-        setuser(json);
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth-token": authtoken
+                }
+            });
+            const json = await response.json();
+            setuser(json);
+        } catch (error) {
+            props.error(true);
+        }
+
     }
 
     return (
