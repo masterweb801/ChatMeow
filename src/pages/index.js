@@ -12,7 +12,7 @@ const Home = (props) => {
         document.title = "ChatMeow";
         getUser();
         fetchPosts();
-    });
+    }, []);
 
     const [posts, setposts] = useState([])
     const [uid, setuid] = useState()

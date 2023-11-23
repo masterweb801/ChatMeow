@@ -16,7 +16,7 @@ const Chat = (props) => {
     useEffect(() => {
         document.title = "ChatMeow - Messages";
         fetchUsers();
-    });
+    }, []);
 
     const sfElement = (value) => {
         setElement(value);

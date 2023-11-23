@@ -33,7 +33,7 @@ function App() {
 
   return (
     <Router>
-      {error === true ?
+      {error === false ?
         <>
           <header>
             <Navbar mode={mode} toggle={toggle} loggedIn={loggedIn} />
