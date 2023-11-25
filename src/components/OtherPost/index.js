@@ -8,6 +8,7 @@ const api = process.env.REACT_APP_API
 const OtherPost = (props) => {
     const [likes, setLikes] = useState();
     const [img, setImage] = useState(profile);
+    const [time, setTime] = useState("Just Now");
 
     const togLike = async () => {
         let likeBtn = document.getElementById('like' + props.id);
@@ -88,7 +89,24 @@ const OtherPost = (props) => {
         if (props.item.userImg) {
             setImage(props.item.userImg);
         }
-    }, [props.uid, props.id, props.item.likers, props.item.likes, props.item.userImg]);
+        if (props.item.date) {
+            let nD = new Date()
+            let mili = nD - new Date(props.item.date)
+            let d, h, m;
+            d = Math.floor(mili / 1000 / 60 / 60 / 24);
+            h = Math.floor((mili / 1000 / 60 / 60 / 24 - d) * 24);
+            m = Math.floor((((mili / 1000 / 60 / 60 / 24 - d) * 24) - h) * 60);
+            if (d > 30) {
+                setTime(new Date(props.item.date).toLocaleDateString());
+            } else if (0 < d ) {
+                setTime(`${d} Days Ago`);
+            } else if (h > 0) {
+                setTime(`${h} Hours Ago`);
+            } else if (m > 0) {
+                setTime(`${m} Minutes Ago`);
+            }
+        }
+    }, [props.uid, props.id, props.item]);
 
     return (
         <div className="post">
@@ -96,18 +114,18 @@ const OtherPost = (props) => {
                 <img src={img} alt="here" height="40" width="40" />
                 <div className="other-top-label">
                     <label>{props.item.userName}</label>
-                    <label>4 hrs.</label>
+                    <label>{time}</label>
                 </div>
 
-                {props.uid === props.item.user ? 
-                <div className="dropdown">
-                    <button className="dropbtn" onClick={togDel} >
-                        <i className='fas fa-ellipsis'></i>
-                    </button>
-                    <div id={props.id + "DD"} className="dropdown-content">
-                        <button className='delp' onClick={delPost} ><i className='fas fa-trash'></i> Delete</button>
-                    </div>
-                </div> : ""}
+                {props.uid === props.item.user ?
+                    <div className="dropdown">
+                        <button className="dropbtn" onClick={togDel} >
+                            <i className='fas fa-ellipsis'></i>
+                        </button>
+                        <div id={props.id + "DD"} className="dropdown-content">
+                            <button className='delp' onClick={delPost} ><i className='fas fa-trash'></i> Delete</button>
+                        </div>
+                    </div> : ""}
 
             </div>
             <div className="post-text">
