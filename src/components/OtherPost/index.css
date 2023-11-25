@@ -31,6 +31,42 @@
     object-fit: cover;
 }
 
+.dropbtn {
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    float: right;
+    margin-left: auto;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 90px;
+    right: 0;
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content button {
+    padding: 6px 8px;
+    text-decoration: none;
+    display: block;
+}
+
+.delp i {
+    background-color: red;
+    color: antiquewhite;
+    padding: 7px;
+    border-radius: 5px;
+}
+
 .post .media {
     width: 100%;
     border-radius: 10px;

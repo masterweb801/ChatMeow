@@ -8,6 +8,7 @@ const api = process.env.REACT_APP_API
 const OtherPost = (props) => {
     const [likes, setLikes] = useState();
     const [img, setImage] = useState(profile);
+
     const togLike = async () => {
         let likeBtn = document.getElementById('like' + props.id);
 
@@ -37,10 +38,42 @@ const OtherPost = (props) => {
         }
     }
 
+    const delPost = async () => {
+        if (window.confirm("Are you sure you want to delete this post?") === true) {
+            const authtoken = localStorage.getItem("token");
+            const url = api + "/api/delPost";
+            try {
+                await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "auth-token": authtoken
+                    },
+                    body: JSON.stringify({ id: props.item._id })
+                });
+                alert("Successfully Deleted Your Post!");
+                props.reload();
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    }
+
     const togText = () => {
         let text = document.getElementById(`text-${props.id}`).innerText;
         navigator.clipboard.writeText(text);
         alert("Successfully Copied To Clipboard")
+    }
+
+    function togDel() {
+        let dropdowns = document.getElementById(props.id + "DD");
+        if (dropdowns.classList.contains("dwn")) {
+            dropdowns.classList.remove("dwn");
+            dropdowns.style.display = "none";
+        } else {
+            dropdowns.style.display = "block";
+            dropdowns.classList.add("dwn");
+        }
     }
 
     useEffect(() => {
@@ -65,6 +98,17 @@ const OtherPost = (props) => {
                     <label>{props.item.userName}</label>
                     <label>4 hrs.</label>
                 </div>
+
+                {props.uid === props.item.user ? 
+                <div className="dropdown">
+                    <button className="dropbtn" onClick={togDel} >
+                        <i className='fas fa-ellipsis'></i>
+                    </button>
+                    <div id={props.id + "DD"} className="dropdown-content">
+                        <button className='delp' onClick={delPost} ><i className='fas fa-trash'></i> Delete</button>
+                    </div>
+                </div> : ""}
+
             </div>
             <div className="post-text">
                 <p id={`text-${props.id}`}>{props.item.text}</p>

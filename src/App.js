@@ -6,8 +6,9 @@ import Home from "./pages";
 import Chat from "./pages/messages";
 import Logout from "./pages/logout";
 import Login from './pages/login';
-import Games from './pages/games';
+import Games from './pages/Games';
 import Error from './components/Error Pages/500';
+// import Snake from './components/Game/Snake';
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -44,6 +45,7 @@ function App() {
               <Route path="/messages" element={<Chat mode={mode} loggedIn={loggedIn} error={setError} />} />
               <Route path="/games" element={<Games loggedIn={loggedIn} error={setError} />} />
               <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn} />} />
+              {/* <Route path="/snake" element={<Snake setLoggedIn={setLoggedIn} />} /> */}
               <Route path="/login" element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn}  error={setError} />} />
             </Routes>
           </main>

@@ -69,7 +69,7 @@ const Home = (props) => {
             <div className="post-container">
                 <UserPost user={user} reload={reload} />
                 {posts.map((item, index) => {
-                    return <OtherPost key={index} uid={uid} item={item} id={index.toString()} />
+                    return <OtherPost key={index} uid={uid} item={item} id={index.toString()} reload={reload} />
                 })}
             </div>
             <div className="chcon"></div>
