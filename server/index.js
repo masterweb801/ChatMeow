@@ -19,6 +19,7 @@ app.use("/api/allUser", require("./routes/Users/allUsers"));
 
 // Posts
 app.use("/api/post", require("./routes/Posts/newPost"));
+app.use("/api/usrPost", require("./routes/Posts/postsOU"));
 app.use("/api/likePost", require("./routes/Posts/likePost"));
 app.use("/api/allPosts", require("./routes/Posts/allPosts"));
 app.use("/api/delPost", require("./routes/Posts/delPost"));
