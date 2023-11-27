@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import UserPost from "../components/UserPost";
 import ScrollToTop from "react-scroll-to-top";
 import OtherPost from "../components/OtherPost";
-import "./index.css";
+import "./css/index.css";
 
 const api = process.env.REACT_APP_API
 

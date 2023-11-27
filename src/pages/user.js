@@ -2,8 +2,8 @@ import { React, useState, useEffect, useCallback } from "react";
 import { Navigate } from "react-router-dom";
 import ScrollToTop from "react-scroll-to-top";
 import OtherPost from "../components/OtherPost";
-import "./index.css";
-import "./user.css";
+import "./css/index.css";
+import "./css/user.css";
 
 const api = process.env.REACT_APP_API
 

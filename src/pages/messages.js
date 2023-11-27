@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import Search from "../components/Search";
 import PropTypes from 'prop-types'
 import OtherChat from '../components/OtherChat';
-import "./messages.css"
+import "./css/messages.css"
 import MessageBox from '../components/MessageBox';
 
 const api = process.env.REACT_APP_API
