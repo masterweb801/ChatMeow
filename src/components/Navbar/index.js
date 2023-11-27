@@ -35,6 +35,11 @@ const Navbar = (props) => {
                             <label htmlFor="show-services"><i className="fas fa-gear"></i> &nbsp; Settings</label>
                             <ul>
                                 <li>
+                                    <NavLink to="/user" activestyle='true'>
+                                        <i className="fas fa-user"></i> &nbsp; My Profile
+                                    </NavLink>
+                                </li>
+                                <li>
                                     <button onClick={props.toggle}>
                                         <i className={`fas fa-${props.mode === "light" ? "moon" : "sun"}`}></i> &nbsp; {props.mode === "light" ? "Dark" : "Light"} Mode
                                     </button>

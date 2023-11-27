@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./pages";
+import User from "./pages/user";
 import Chat from "./pages/messages";
 import Logout from "./pages/logout";
 import Login from './pages/login';
@@ -42,6 +43,7 @@ function App() {
           <main>
             <Routes>
               <Route path="/" element={<Home mode={mode} loggedIn={loggedIn} error={setError} />} />
+              <Route path="/user" element={<User mode={mode} loggedIn={loggedIn} error={setError} />} />
               <Route path="/messages" element={<Chat mode={mode} loggedIn={loggedIn} error={setError} />} />
               <Route path="/games" element={<Games loggedIn={loggedIn} error={setError} />} />
               <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn} />} />
