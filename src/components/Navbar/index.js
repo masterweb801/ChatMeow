@@ -46,7 +46,7 @@ const Navbar = (props) => {
                                 </li>
                                 {props.loggedIn === false ? <li>
                                     <NavLink to="/login" activestyle='true'>
-                                        <i className="fas fa-sign-in"></i> &nbsp; Login / Signup
+                                        <i className="fas fa-sign-in"></i> &nbsp; Login
                                     </NavLink>
                                 </li> : <li>
                                     <NavLink to="/logout" activestyle='true' style={{ backgroundColor: "#e83427" }}>

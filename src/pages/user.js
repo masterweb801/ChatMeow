@@ -10,6 +10,7 @@ const api = process.env.REACT_APP_API
 const Home = (props) => {
     const [posts, setposts] = useState([])
     const [user, setuser] = useState({})
+    const [gte, setGte] = useState("");
 
     const fetchPosts = useCallback(async () => {
         const authtoken = localStorage.getItem("token");
@@ -53,6 +54,10 @@ const Home = (props) => {
         }
     }, [props])
 
+    const goEdit = () => {
+        setGte(<Navigate to="/edit-profile" />);
+    }
+
     useEffect(() => {
         getUser();
         fetchPosts();
@@ -62,8 +67,9 @@ const Home = (props) => {
     return (
         <div>
             {props.loggedIn === false ? <Navigate to="/login" /> : ""}
+            {gte}
             <div className="container-main">
-                <div className="profile">
+                <div className="profile" style={{color:props.mode==="dark"?"#fff":"#000"}}>
                     <img src={user.img} className="profile-picture" alt="" />
                     <div className="profile-details">
                         <h2>
@@ -86,6 +92,9 @@ const Home = (props) => {
                                 </div></> : ""}
                         </div>
                     </div>
+                </div>
+                <div className="profile-edit">
+                    <button id="profile-edit-btn" onClick={goEdit}><i className="fas fa-pen"></i>&nbsp; Edit Profile</button>
                 </div>
             </div>
             <div className="container">
