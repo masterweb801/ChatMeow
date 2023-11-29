@@ -2,21 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Loader from './components/Loader';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 document.body.style.backgroundColor = "white";
 root.render(
-  <Loader />
+    <App />
 );
-setTimeout(() => {
-  document.body.style.backgroundColor = "#f1f1f1";
-  root.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  );
-}, 2000);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

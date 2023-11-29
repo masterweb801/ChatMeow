@@ -122,7 +122,7 @@ const Login = (props) => {
                 <header>Login</header>
                 <form action="#">
                     <input type="email" value={email} onChange={(e) => { setEmail(e.target.value) }} placeholder="Enter your email" required />
-                    <input type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="Enter your password" required />
+                    <input type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="Enter your password" required autoComplete="false"/>
                     <button className='button' onClick={handleLoginClick} >Login</button>
                 </form>
                 <div className="signup">
@@ -146,8 +146,8 @@ const Login = (props) => {
 
                     <input type="text" value={name} onChange={(e) => { setName(e.target.value) }} placeholder="Enter your name" required />
                     <input type="email" value={email} onChange={(e) => { setEmail(e.target.value) }} placeholder="Enter your email" required />
-                    <input type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="Create a password" required />
-                    <input type="password" value={cpassword} onChange={(e) => { setcPassword(e.target.value) }} placeholder="Confirm your password" required />
+                    <input type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="Create a password" required autoComplete="false"/>
+                    <input type="password" value={cpassword} onChange={(e) => { setcPassword(e.target.value) }} placeholder="Confirm your password" required autoComplete="false"/>
                     <button type='submit' className='button' onClick={handleSignupClick} >Signup</button>
                 </form>
                 <div className="signup">

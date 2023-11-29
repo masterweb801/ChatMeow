@@ -9,7 +9,11 @@ router.use(cors());
 router.post('/', fetchUser, async (req, res) => {
     let success = false;
     try {
-        const posts = await Post.find({ user: req.user.id});
+        const { page, limit } = req.body;
+        let skip = (page - 1) * limit;
+        const data = Post.find({ user: req.user.id});
+        data.skip(skip).limit(limit);
+        const posts = await data;
         res.json(posts);
     } catch (error) {
         console.error(error.message);
