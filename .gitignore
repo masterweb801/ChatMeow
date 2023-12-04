@@ -5,6 +5,8 @@ node_modules
 /.pnp
 .pnp.js
 Credentials.txt
+.dockerignore
+Dockerfile
 # testing
 /coverage
 
