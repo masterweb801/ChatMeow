@@ -75,12 +75,12 @@ const MessageBox = (props) => {
             <div className='chat-header'>
                 <img src={img} alt="Person" width="96" height="96" />
                 <div className='usr-card-label'>
-                    <label>{props.item[1]}</label>
+                    <label style={{color: props.mode === "light"? "#000": "#fff"}}>{props.item[1]}</label>
                     <label>Active Now</label>
                 </div>
                 <button className="close" onClick={close}>X</button>
             </div>
-            <div className="chat-box" id='all-messages'>
+            <div className="chat-box" id='all-messages' style={{backgroundColor: props.mode === "dark"? "#444": "#fff"}}>
                 {chats.map((item, index) => {
                     if (item.in_user_id === props.item[0]) {
                         return <div className="chat incoming" key={index}>

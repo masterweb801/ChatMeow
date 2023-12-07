@@ -22,9 +22,9 @@ function toggle() {
 
 }
 
-const Search = () => {
+const Search = (props) => {
     return (
-        <div className="search">
+        <div className="search" style={{backgroundColor: props.mode === "light"? "transparent":"#333", color: props.mode === "light"? "":"#fff"}}>
             <span className="text">Select an user to start chat</span>
             <input type="text" placeholder="Enter name to search..." />
             <button onClick={toggle} ><i className="fas fa-search"></i></button>

@@ -34,11 +34,11 @@ const Navbar = (props) => {
                             <input type="checkbox" id="show-services" />
                             <label htmlFor="show-services"><i className="fas fa-gear"></i> &nbsp; Settings</label>
                             <ul>
-                                <li>
+                                {props.loggedIn === true ? <li>
                                     <NavLink to="/user" activestyle='true'>
                                         <i className="fas fa-user"></i> &nbsp; My Profile
                                     </NavLink>
-                                </li>
+                                </li> : ""}
                                 <li>
                                     <button onClick={props.toggle}>
                                         <i className={`fas fa-${props.mode === "light" ? "moon" : "sun"}`}></i> &nbsp; {props.mode === "light" ? "Dark" : "Light"} Mode
