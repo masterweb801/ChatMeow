@@ -59,20 +59,20 @@ const Chat = (props) => {
     }, [fetchUsers]);
 
     return (
-        <div className='messages'>
+        <div className='messages' style={{backgroundColor: props.mode === "light"? "#faf9f9": "#111"}}>
             {props.loggedIn === false ? <Navigate to="/login" /> : ""}
-            <div className="users" id='users'>
+            <div className="users" id='users' style={{backgroundColor: props.mode === "light"? "#faf9f9": "#111"}}>
                 <Search mode={props.mode} />
                 {users.map((item, index) => {
-                    return <OtherChat key={index} item={item} id={index.toString()} swt={sfElement} tog={setFocus} />
+                    return <OtherChat key={index} item={item} id={index.toString()} swt={sfElement} ele={fElement} tog={setFocus} mode={props.mode} />
                 })}
             </div>
             {focus === false ?
                 <aside className="chats" id="aside-messages">
-                    <div className='nsel'>Select an User to Start Conversation</div>
+                    <div className='nsel' style={{color: props.mode === "light"? "#000": "#fff"}}>Select an User to Start Conversation</div>
                 </aside> :
                 <aside className="chats" id="aside-messages">
-                    <MessageBox item={fElement} tog={setFocus} back={toggle} />
+                    <MessageBox item={fElement} tog={setFocus} back={toggle} mode={props.mode} />
                 </aside>
             }
         </div>
