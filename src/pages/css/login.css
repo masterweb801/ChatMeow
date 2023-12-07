@@ -35,7 +35,7 @@
 }
 
 .form input,
-.form button {
+.form button, textarea {
     height: 60px;
     width: 100%;
     padding: 0 15px;
@@ -44,6 +44,12 @@
     border: 1px solid #ddd;
     border-radius: 6px;
     outline: none;
+}
+
+textarea {
+    resize: none;
+    height: 100px;
+    padding: 15px;
 }
 
 .form input:focus,

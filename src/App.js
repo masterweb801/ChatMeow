@@ -9,6 +9,7 @@ import Logout from "./pages/logout";
 import Login from './pages/login';
 import Games from './pages/Games';
 import Error from './components/Error Pages/500';
+import UpProfile from './pages/settings';
 // import Snake from './components/Game/Snake';
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home mode={mode} loggedIn={loggedIn} error={setError} />} />
               <Route path="/user" element={<User mode={mode} loggedIn={loggedIn} error={setError} />} />
+              <Route path="/edit-profile" element={<UpProfile mode={mode} loggedIn={loggedIn} error={setError} />} />
               <Route path="/messages" element={<Chat mode={mode} loggedIn={loggedIn} error={setError} />} />
               <Route path="/games" element={<Games loggedIn={loggedIn} error={setError} />} />
               <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn} />} />
