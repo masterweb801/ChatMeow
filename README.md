@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# ChatMeow
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ChatMeow is a React-based social and messaging web application. The current frontend includes account login, a home/feed view, user profiles, profile editing, messaging, and a games section.
 
-## Available Scripts
+The backend is maintained separately in [ChatMeow-API](https://github.com/masterweb801/ChatMeow-API).
 
-In the project directory, you can run:
+## Technology
 
-### `npm start`
+- React 18
+- React Router 6
+- Create React App (react-scripts)
+- React Icons
+- Browser-based token storage for the signed-in session
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Application routes
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+| Route | Purpose |
+|---|---|
+| / | Home/feed |
+| /login | Sign in |
+| /user | User profile |
+| /edit-profile | Profile settings |
+| /messages | Messaging |
+| /games | Games |
+| /logout | Sign out |
 
-### `npm test`
+## Run locally
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Requirements
 
-### `npm run build`
+- Node.js and npm
+- A running ChatMeow API instance
+- The API URL configured in the frontend source as required by the current deployment
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Install dependencies
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Start the development server
 
-### `npm run eject`
+    npm start
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The development app opens at http://localhost:3000.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Create a production build
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    npm run build
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The optimized production output is generated in the build/ directory.
 
-## Learn More
+## Related repository
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- [ChatMeow-API](https://github.com/masterweb801/ChatMeow-API) — Express and MongoDB backend
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Project notes
 
-### Code Splitting
+This repository contains the frontend only. API availability and database configuration are handled by the backend project. Do not commit credentials, access tokens, or private deployment configuration.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Built by [Mobashshirul Karim](https://github.com/masterweb801).
